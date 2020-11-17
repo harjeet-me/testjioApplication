@@ -1,0 +1,69 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-dynamic-data-heading" jhiTranslate="testjioApplicationApp.dynamicData.home.createOrEditLabel">Create or edit a Dynamic Data</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="testjioApplicationApp.dynamicData.dataKey" for="field_dataKey">Data Key</label>
+                    <input type="text" class="form-control" name="dataKey" id="field_dataKey"
+                           formControlName="dataKey"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="testjioApplicationApp.dynamicData.dataValue" for="field_dataValue">Data Value</label>
+                    <input type="text" class="form-control" name="dataValue" id="field_dataValue"
+                           formControlName="dataValue"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="testjioApplicationApp.dynamicData.valueDataType" for="field_valueDataType">Value Data Type</label>
+                    <select class="form-control" name="valueDataType" formControlName="valueDataType" id="field_valueDataType">
+                        <option value="DString">{{ 'testjioApplicationApp.DataType.DString' | translate }}</option>
+                        <option value="DByte">{{ 'testjioApplicationApp.DataType.DByte' | translate }}</option>
+                        <option value="DShort">{{ 'testjioApplicationApp.DataType.DShort' | translate }}</option>
+                        <option value="DInt">{{ 'testjioApplicationApp.DataType.DInt' | translate }}</option>
+                        <option value="DLong">{{ 'testjioApplicationApp.DataType.DLong' | translate }}</option>
+                        <option value="DFloat">{{ 'testjioApplicationApp.DataType.DFloat' | translate }}</option>
+                        <option value="DDouble">{{ 'testjioApplicationApp.DataType.DDouble' | translate }}</option>
+                        <option value="DBoolean">{{ 'testjioApplicationApp.DataType.DBoolean' | translate }}</option>
+                        <option value="DChar">{{ 'testjioApplicationApp.DataType.DChar' | translate }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="testjioApplicationApp.dynamicData.auditInfo" for="field_auditInfo">Audit Info</label>
+                    <select class="form-control" id="field_auditInfo" name="auditInfo" formControlName="auditInfo">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="auditInfoOption.id === editForm.get('auditInfo')!.value?.id ? editForm.get('auditInfo')!.value : auditInfoOption" *ngFor="let auditInfoOption of auditinfos; trackBy: trackById">{{ auditInfoOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="testjioApplicationApp.dynamicData.dynamicDataEnvelope" for="field_dynamicDataEnvelope">Dynamic Data Envelope</label>
+                    <select class="form-control" id="field_dynamicDataEnvelope" name="dynamicDataEnvelope" formControlName="dynamicDataEnvelope">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="dynamicDataEnvelopeOption.id === editForm.get('dynamicDataEnvelope')!.value?.id ? editForm.get('dynamicDataEnvelope')!.value : dynamicDataEnvelopeOption" *ngFor="let dynamicDataEnvelopeOption of dynamicdataenvelopes; trackBy: trackById">{{ dynamicDataEnvelopeOption.id }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

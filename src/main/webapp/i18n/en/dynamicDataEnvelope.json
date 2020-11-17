@@ -1,0 +1,24 @@
+{
+  "testjioApplicationApp": {
+    "dynamicDataEnvelope": {
+      "home": {
+        "title": "Dynamic Data Envelopes",
+        "createLabel": "Create a new Dynamic Data Envelope",
+        "createOrEditLabel": "Create or edit a Dynamic Data Envelope",
+        "notFound": "No Dynamic Data Envelopes found"
+      },
+      "created": "A new Dynamic Data Envelope is created with identifier {{ param }}",
+      "updated": "A Dynamic Data Envelope is updated with identifier {{ param }}",
+      "deleted": "A Dynamic Data Envelope is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Dynamic Data Envelope {{ id }}?"
+      },
+      "detail": {
+        "title": "Dynamic Data Envelope"
+      },
+      "desc": "Desc",
+      "auditInfo": "Audit Info",
+      "dynamicData": "Dynamic Data"
+    }
+  }
+}

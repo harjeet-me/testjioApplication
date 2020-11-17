@@ -1,0 +1,11 @@
+{
+  "testjioApplicationApp": {
+    "CONVERSATIONTYPE": {
+      "null": "",
+      "EMAIL": "EMAIL",
+      "SMS": "SMS",
+      "FAX": "FAX",
+      "COMMENT": "COMMENT"
+    }
+  }
+}

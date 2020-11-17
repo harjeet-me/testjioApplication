@@ -1,0 +1,92 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="testjioApplicationApp.conversation.home.title">Conversations</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-conversation" [routerLink]="['/conversation/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="testjioApplicationApp.conversation.home.createLabel">
+            Create a new Conversation
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="conversations?.length === 0">
+        <span jhiTranslate="testjioApplicationApp.conversation.home.notFound">No conversations found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="conversations && conversations.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+                    <th scope="col" ><span jhiTranslate="testjioApplicationApp.conversation.subject">Subject</span></th>
+                    <th scope="col" ><span jhiTranslate="testjioApplicationApp.conversation.type">Type</span></th>
+                    <th scope="col" ><span jhiTranslate="testjioApplicationApp.conversation.attachment">Attachment</span></th>
+                    <th scope="col" ><span jhiTranslate="testjioApplicationApp.conversation.attachmentName">Attachment Name</span></th>
+                    <th scope="col" ><span jhiTranslate="testjioApplicationApp.conversation.status">Status</span></th>
+                    <th scope="col" ><span jhiTranslate="testjioApplicationApp.conversation.sentDateTime">Sent Date Time</span></th>
+                    <th scope="col" ><span jhiTranslate="testjioApplicationApp.conversation.dynamicDataEnvelope">Dynamic Data Envelope</span></th>
+                    <th scope="col" ><span jhiTranslate="testjioApplicationApp.conversation.auditInfo">Audit Info</span></th>
+                    <th scope="col" ><span jhiTranslate="testjioApplicationApp.conversation.discrim">Discrim</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let conversation of conversations ;trackBy: trackId">
+                    <td><a [routerLink]="['/conversation', conversation.id, 'view']">{{ conversation.id }}</a></td>
+                    <td>{{ conversation.subject }}</td>
+                    <td jhiTranslate="{{ 'testjioApplicationApp.CONVERSATIONTYPE.' + conversation.type }}">{{ conversation.type }}</td>
+                    <td>
+                        <a *ngIf="conversation.attachment" (click)="openFile(conversation.attachmentContentType, conversation.attachment)" jhiTranslate="entity.action.open">open</a>
+                        <span *ngIf="conversation.attachment">{{ conversation.attachmentContentType }}, {{ byteSize(conversation.attachment) }}</span>
+                    </td>
+                    <td>{{ conversation.attachmentName }}</td>
+                    <td>{{ conversation.status }}</td>
+                    <td>{{ conversation.sentDateTime | date:'medium' }}</td>
+                    <td>
+                        <div *ngIf="conversation.dynamicDataEnvelope">
+                            <a [routerLink]="['/dynamic-data-envelope', conversation.dynamicDataEnvelope?.id, 'view']" >{{ conversation.dynamicDataEnvelope?.id }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="conversation.auditInfo">
+                            <a [routerLink]="['/audit-info', conversation.auditInfo?.id, 'view']" >{{ conversation.auditInfo?.id }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="conversation.discrim">
+                            <a [routerLink]="['/discrim', conversation.discrim?.id, 'view']" >{{ conversation.discrim?.id }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/conversation', conversation.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/conversation', conversation.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(conversation)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

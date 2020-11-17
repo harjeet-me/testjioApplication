@@ -1,0 +1,29 @@
+{
+  "testjioApplicationApp": {
+    "fileSystem": {
+      "home": {
+        "title": "File Systems",
+        "createLabel": "Create a new File System",
+        "createOrEditLabel": "Create or edit a File System",
+        "notFound": "No File Systems found"
+      },
+      "created": "A new File System is created with identifier {{ param }}",
+      "updated": "A File System is updated with identifier {{ param }}",
+      "deleted": "A File System is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete File System {{ id }}?"
+      },
+      "detail": {
+        "title": "File System"
+      },
+      "name": "Name",
+      "data": "Data",
+      "ext": "Ext",
+      "url": "Url",
+      "dynamicDataEnvelope": "Dynamic Data Envelope",
+      "auditInfo": "Audit Info",
+      "discrim": "Discrim",
+      "envelope": "Envelope"
+    }
+  }
+}

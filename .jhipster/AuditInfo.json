@@ -1,0 +1,69 @@
+{
+  "name": "AuditInfo",
+  "fields": [
+    {
+      "fieldName": "createdDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "createdBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lastModifiedDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "lastModifiedBy",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "fileSystem",
+      "otherEntityRelationshipName": "auditInfo",
+      "relationshipName": "fileSystem",
+      "ownerSide": false
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "envelope",
+      "otherEntityRelationshipName": "auditInfo",
+      "relationshipName": "envelope",
+      "ownerSide": false
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "conversation",
+      "otherEntityRelationshipName": "auditInfo",
+      "relationshipName": "conversation",
+      "ownerSide": false
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "dynamicDataEnvelope",
+      "otherEntityRelationshipName": "auditInfo",
+      "relationshipName": "dynamicDataEnvelope",
+      "ownerSide": false
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "dynamicData",
+      "otherEntityRelationshipName": "auditInfo",
+      "relationshipName": "dynamicData",
+      "ownerSide": false
+    }
+  ],
+  "changelogDate": "20201117033012",
+  "entityTableName": "audit_info",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

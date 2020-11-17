@@ -1,0 +1,58 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="envelope">
+            <h2><span jhiTranslate="testjioApplicationApp.envelope.detail.title">Envelope</span> {{ envelope.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="testjioApplicationApp.envelope.name">Name</span></dt>
+                <dd>
+                    <span>{{ envelope.name }}</span>
+                </dd>
+                <dt><span jhiTranslate="testjioApplicationApp.envelope.desc">Desc</span></dt>
+                <dd>
+                    <span>{{ envelope.desc }}</span>
+                </dd>
+                <dt><span jhiTranslate="testjioApplicationApp.envelope.dynamicDataEnvelope">Dynamic Data Envelope</span></dt>
+                <dd>
+                    <div *ngIf="envelope.dynamicDataEnvelope">
+                        <a [routerLink]="['/dynamic-data-envelope', envelope.dynamicDataEnvelope?.id, 'view']">{{ envelope.dynamicDataEnvelope?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="testjioApplicationApp.envelope.auditInfo">Audit Info</span></dt>
+                <dd>
+                    <div *ngIf="envelope.auditInfo">
+                        <a [routerLink]="['/audit-info', envelope.auditInfo?.id, 'view']">{{ envelope.auditInfo?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="testjioApplicationApp.envelope.discrim">Discrim</span></dt>
+                <dd>
+                    <div *ngIf="envelope.discrim">
+                        <a [routerLink]="['/discrim', envelope.discrim?.id, 'view']">{{ envelope.discrim?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="testjioApplicationApp.envelope.owner">Owner</span></dt>
+                <dd>
+                    <div *ngIf="envelope.owner">
+                        <a [routerLink]="['/envelope', envelope.owner?.id, 'view']">{{ envelope.owner?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/envelope', envelope.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

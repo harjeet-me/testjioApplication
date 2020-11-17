@@ -1,0 +1,36 @@
+{
+  "name": "DynamicDataEnvelope",
+  "fields": [
+    {
+      "fieldName": "desc",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "auditInfo",
+      "otherEntityRelationshipName": "dynamicDataEnvelope",
+      "relationshipName": "auditInfo",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "dynamicData",
+      "otherEntityRelationshipName": "dynamicDataEnvelope",
+      "relationshipName": "dynamicData"
+    }
+  ],
+  "changelogDate": "20201117032812",
+  "entityTableName": "dynamic_data_envelope",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

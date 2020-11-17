@@ -1,0 +1,36 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="dynamicDataEnvelope">
+            <h2><span jhiTranslate="testjioApplicationApp.dynamicDataEnvelope.detail.title">Dynamic Data Envelope</span> {{ dynamicDataEnvelope.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="testjioApplicationApp.dynamicDataEnvelope.desc">Desc</span></dt>
+                <dd>
+                    <span>{{ dynamicDataEnvelope.desc }}</span>
+                </dd>
+                <dt><span jhiTranslate="testjioApplicationApp.dynamicDataEnvelope.auditInfo">Audit Info</span></dt>
+                <dd>
+                    <div *ngIf="dynamicDataEnvelope.auditInfo">
+                        <a [routerLink]="['/audit-info', dynamicDataEnvelope.auditInfo?.id, 'view']">{{ dynamicDataEnvelope.auditInfo?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/dynamic-data-envelope', dynamicDataEnvelope.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

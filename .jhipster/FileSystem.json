@@ -1,0 +1,65 @@
+{
+  "name": "FileSystem",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "data",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any"
+    },
+    {
+      "fieldName": "ext",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "url",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "dynamicDataEnvelope",
+      "otherEntityRelationshipName": "fileSystem",
+      "relationshipName": "dynamicDataEnvelope",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "auditInfo",
+      "otherEntityRelationshipName": "fileSystem",
+      "relationshipName": "auditInfo",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "discrim",
+      "otherEntityRelationshipName": "fileSystem",
+      "relationshipName": "discrim",
+      "otherEntityField": "id"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "envelope",
+      "otherEntityRelationshipName": "fileSystem",
+      "relationshipName": "envelope",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20201117032612",
+  "entityTableName": "file_system",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

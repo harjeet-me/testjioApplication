@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <!--
+        Added the constraints for entity FileSystem.
+    -->
+    <changeSet id="20201117032612-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="dynamic_data_envelope_id"
+                                 baseTableName="file_system"
+                                 constraintName="fk_file_system_dynamic_data_envelope_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="dynamic_data_envelope"/>
+
+        <addForeignKeyConstraint baseColumnNames="audit_info_id"
+                                 baseTableName="file_system"
+                                 constraintName="fk_file_system_audit_info_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="audit_info"/>
+
+        <addForeignKeyConstraint baseColumnNames="discrim_id"
+                                 baseTableName="file_system"
+                                 constraintName="fk_file_system_discrim_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="discrim"/>
+
+        <addForeignKeyConstraint baseColumnNames="envelope_id"
+                                 baseTableName="file_system"
+                                 constraintName="fk_file_system_envelope_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="envelope"/>
+
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,67 @@
+{
+  "name": "Conversation",
+  "fields": [
+    {
+      "fieldName": "subject",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "CONVERSATIONTYPE",
+      "fieldValues": "EMAIL,SMS,FAX,COMMENT"
+    },
+    {
+      "fieldName": "attachment",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any"
+    },
+    {
+      "fieldName": "attachmentName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "sentDateTime",
+      "fieldType": "Instant"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "dynamicDataEnvelope",
+      "otherEntityRelationshipName": "conversation",
+      "relationshipName": "dynamicDataEnvelope",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "auditInfo",
+      "otherEntityRelationshipName": "conversation",
+      "relationshipName": "auditInfo",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "discrim",
+      "otherEntityRelationshipName": "conversation",
+      "relationshipName": "discrim",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20201117032712",
+  "entityTableName": "conversation",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

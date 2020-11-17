@@ -1,0 +1,104 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-conversation-heading" jhiTranslate="testjioApplicationApp.conversation.home.createOrEditLabel">Create or edit a Conversation</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="testjioApplicationApp.conversation.subject" for="field_subject">Subject</label>
+                    <input type="text" class="form-control" name="subject" id="field_subject"
+                           formControlName="subject"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="testjioApplicationApp.conversation.type" for="field_type">Type</label>
+                    <select class="form-control" name="type" formControlName="type" id="field_type">
+                        <option value="EMAIL">{{ 'testjioApplicationApp.CONVERSATIONTYPE.EMAIL' | translate }}</option>
+                        <option value="SMS">{{ 'testjioApplicationApp.CONVERSATIONTYPE.SMS' | translate }}</option>
+                        <option value="FAX">{{ 'testjioApplicationApp.CONVERSATIONTYPE.FAX' | translate }}</option>
+                        <option value="COMMENT">{{ 'testjioApplicationApp.CONVERSATIONTYPE.COMMENT' | translate }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="testjioApplicationApp.conversation.attachment" for="field_attachment">Attachment</label>
+                    <div>
+                        <div *ngIf="editForm.get('attachment')!.value" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(editForm.get('attachmentContentType')!.value, editForm.get('attachment')!.value)" jhiTranslate="entity.action.open">open</a><br>
+                            <span class="pull-left">{{ editForm.get('attachmentContentType')!.value }}, {{ byteSize(editForm.get('attachment')!.value) }}</span>
+                            <button type="button" (click)="editForm.patchValue({attachment: null});editForm.patchValue({attachmentContentType: null});"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon icon="times"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_attachment" (change)="setFileData($event, 'attachment', false)" jhiTranslate="entity.action.addblob"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="attachment" id="field_attachment"
+                           formControlName="attachment"/>
+                    <input type="hidden" class="form-control" name="attachmentContentType" id="field_attachmentContentType"
+                           formControlName="attachmentContentType" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="testjioApplicationApp.conversation.attachmentName" for="field_attachmentName">Attachment Name</label>
+                    <input type="text" class="form-control" name="attachmentName" id="field_attachmentName"
+                           formControlName="attachmentName"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="testjioApplicationApp.conversation.status" for="field_status">Status</label>
+                    <input type="text" class="form-control" name="status" id="field_status"
+                           formControlName="status"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="testjioApplicationApp.conversation.sentDateTime" for="field_sentDateTime">Sent Date Time</label>
+                    <div class="d-flex">
+                        <input id="field_sentDateTime" type="datetime-local" class="form-control" name="sentDateTime" formControlName="sentDateTime" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="testjioApplicationApp.conversation.dynamicDataEnvelope" for="field_dynamicDataEnvelope">Dynamic Data Envelope</label>
+                    <select class="form-control" id="field_dynamicDataEnvelope" name="dynamicDataEnvelope" formControlName="dynamicDataEnvelope">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="dynamicDataEnvelopeOption.id === editForm.get('dynamicDataEnvelope')!.value?.id ? editForm.get('dynamicDataEnvelope')!.value : dynamicDataEnvelopeOption" *ngFor="let dynamicDataEnvelopeOption of dynamicdataenvelopes; trackBy: trackById">{{ dynamicDataEnvelopeOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="testjioApplicationApp.conversation.auditInfo" for="field_auditInfo">Audit Info</label>
+                    <select class="form-control" id="field_auditInfo" name="auditInfo" formControlName="auditInfo">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="auditInfoOption.id === editForm.get('auditInfo')!.value?.id ? editForm.get('auditInfo')!.value : auditInfoOption" *ngFor="let auditInfoOption of auditinfos; trackBy: trackById">{{ auditInfoOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="testjioApplicationApp.conversation.discrim" for="field_discrim">Discrim</label>
+                    <select class="form-control" id="field_discrim" name="discrim" formControlName="discrim">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="discrimOption.id === editForm.get('discrim')!.value?.id ? editForm.get('discrim')!.value : discrimOption" *ngFor="let discrimOption of discrims; trackBy: trackById">{{ discrimOption.id }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

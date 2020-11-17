@@ -1,0 +1,77 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="testjioApplicationApp.dynamicData.home.title">Dynamic Data</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-dynamic-data" [routerLink]="['/dynamic-data/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="testjioApplicationApp.dynamicData.home.createLabel">
+            Create a new Dynamic Data
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="dynamicData?.length === 0">
+        <span jhiTranslate="testjioApplicationApp.dynamicData.home.notFound">No dynamicData found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="dynamicData && dynamicData.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+                    <th scope="col" ><span jhiTranslate="testjioApplicationApp.dynamicData.dataKey">Data Key</span></th>
+                    <th scope="col" ><span jhiTranslate="testjioApplicationApp.dynamicData.dataValue">Data Value</span></th>
+                    <th scope="col" ><span jhiTranslate="testjioApplicationApp.dynamicData.valueDataType">Value Data Type</span></th>
+                    <th scope="col" ><span jhiTranslate="testjioApplicationApp.dynamicData.auditInfo">Audit Info</span></th>
+                    <th scope="col" ><span jhiTranslate="testjioApplicationApp.dynamicData.dynamicDataEnvelope">Dynamic Data Envelope</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let dynamicData of dynamicData ;trackBy: trackId">
+                    <td><a [routerLink]="['/dynamic-data', dynamicData.id, 'view']">{{ dynamicData.id }}</a></td>
+                    <td>{{ dynamicData.dataKey }}</td>
+                    <td>{{ dynamicData.dataValue }}</td>
+                    <td jhiTranslate="{{ 'testjioApplicationApp.DataType.' + dynamicData.valueDataType }}">{{ dynamicData.valueDataType }}</td>
+                    <td>
+                        <div *ngIf="dynamicData.auditInfo">
+                            <a [routerLink]="['/audit-info', dynamicData.auditInfo?.id, 'view']" >{{ dynamicData.auditInfo?.id }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="dynamicData.dynamicDataEnvelope">
+                            <a [routerLink]="['/dynamic-data-envelope', dynamicData.dynamicDataEnvelope?.id, 'view']" >{{ dynamicData.dynamicDataEnvelope?.id }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/dynamic-data', dynamicData.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/dynamic-data', dynamicData.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(dynamicData)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

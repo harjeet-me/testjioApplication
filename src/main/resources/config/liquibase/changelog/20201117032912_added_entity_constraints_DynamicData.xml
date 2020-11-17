@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <!--
+        Added the constraints for entity DynamicData.
+    -->
+    <changeSet id="20201117032912-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="audit_info_id"
+                                 baseTableName="dynamic_data"
+                                 constraintName="fk_dynamic_data_audit_info_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="audit_info"/>
+
+        <addForeignKeyConstraint baseColumnNames="dynamic_data_envelope_id"
+                                 baseTableName="dynamic_data"
+                                 constraintName="fk_dynamic_data_dynamic_data_envelope_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="dynamic_data_envelope"/>
+
+    </changeSet>
+</databaseChangeLog>
