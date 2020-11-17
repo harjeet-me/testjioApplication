@@ -1,0 +1,87 @@
+
+
+
+entity Envelope{
+name String ,
+desc String,
+}
+
+entity FileSystem {
+name String ,
+data Blob ,
+ext Boolean,
+url String 
+}
+
+enum CONVERSATIONTYPE {
+EMAIL , SMS , FAX , COMMENT 
+}
+
+
+
+entity Conversation {
+subject String,
+type CONVERSATIONTYPE,
+attachment Blob ,
+attachmentName String ,
+status String ,
+sentDateTime Instant 
+
+}
+
+// every entity will have only DynamicDataEnvelope object for metadata handling
+entity DynamicDataEnvelope {
+desc String
+}
+
+enum DataType {
+DString , DByte, DShort, DInt, DLong, DFloat, DDouble, DBoolean , DChar
+}
+entity DynamicData {
+dataKey String,
+dataValue String ,
+valueDataType DataType
+}
+
+entity AuditInfo{
+createdDate Instant ,
+createdBy String ,
+lastModifiedDate Instant ,
+lastModifiedBy String
+}
+
+entity Discrim{
+name String
+
+}
+
+relationship OneToMany {
+Envelope to FileSystem
+Envelope to Envelope {owner}
+DynamicDataEnvelope to DynamicData
+
+}
+
+// entry for multitenancy
+relationship ManyToOne {
+FileSystem {discrim} to Discrim
+Envelope {discrim} to Discrim
+Conversation {discrim} to Discrim
+}
+
+// entry for DynamicDataEnvelope
+relationship OneToOne {
+FileSystem {dynamicDataEnvelope} to DynamicDataEnvelope
+Envelope {dynamicDataEnvelope} to DynamicDataEnvelope
+
+Conversation {dynamicDataEnvelope} to DynamicDataEnvelope
+}
+
+// entry for AuditInfo
+relationship OneToOne {
+FileSystem to  AuditInfo
+Envelope to    AuditInfo
+Conversation to    AuditInfo
+DynamicDataEnvelope to    AuditInfo
+DynamicData to    AuditInfo
+}
