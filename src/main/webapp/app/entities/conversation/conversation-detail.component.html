@@ -1,0 +1,71 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="conversation">
+            <h2><span jhiTranslate="testjioApplicationApp.conversation.detail.title">Conversation</span> {{ conversation.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="testjioApplicationApp.conversation.subject">Subject</span></dt>
+                <dd>
+                    <span>{{ conversation.subject }}</span>
+                </dd>
+                <dt><span jhiTranslate="testjioApplicationApp.conversation.type">Type</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'testjioApplicationApp.CONVERSATIONTYPE.' + conversation.type }}">{{ conversation.type }}</span>
+                </dd>
+                <dt><span jhiTranslate="testjioApplicationApp.conversation.attachment">Attachment</span></dt>
+                <dd>
+                    <div *ngIf="conversation.attachment">
+                        <a (click)="openFile(conversation.attachmentContentType, conversation.attachment)" jhiTranslate="entity.action.open">open</a>
+                        {{ conversation.attachmentContentType }}, {{ byteSize(conversation.attachment) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="testjioApplicationApp.conversation.attachmentName">Attachment Name</span></dt>
+                <dd>
+                    <span>{{ conversation.attachmentName }}</span>
+                </dd>
+                <dt><span jhiTranslate="testjioApplicationApp.conversation.status">Status</span></dt>
+                <dd>
+                    <span>{{ conversation.status }}</span>
+                </dd>
+                <dt><span jhiTranslate="testjioApplicationApp.conversation.sentDateTime">Sent Date Time</span></dt>
+                <dd>
+                    <span>{{ conversation.sentDateTime }}</span>
+                </dd>
+                <dt><span jhiTranslate="testjioApplicationApp.conversation.dynamicDataEnvelope">Dynamic Data Envelope</span></dt>
+                <dd>
+                    <div *ngIf="conversation.dynamicDataEnvelope">
+                        <a [routerLink]="['/dynamic-data-envelope', conversation.dynamicDataEnvelope?.id, 'view']">{{ conversation.dynamicDataEnvelope?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="testjioApplicationApp.conversation.auditInfo">Audit Info</span></dt>
+                <dd>
+                    <div *ngIf="conversation.auditInfo">
+                        <a [routerLink]="['/audit-info', conversation.auditInfo?.id, 'view']">{{ conversation.auditInfo?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="testjioApplicationApp.conversation.discrim">Discrim</span></dt>
+                <dd>
+                    <div *ngIf="conversation.discrim">
+                        <a [routerLink]="['/discrim', conversation.discrim?.id, 'view']">{{ conversation.discrim?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/conversation', conversation.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

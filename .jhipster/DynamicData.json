@@ -1,0 +1,46 @@
+{
+  "name": "DynamicData",
+  "fields": [
+    {
+      "fieldName": "dataKey",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dataValue",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "valueDataType",
+      "fieldType": "DataType",
+      "fieldValues": "DString,DByte,DShort,DInt,DLong,DFloat,DDouble,DBoolean,DChar"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "auditInfo",
+      "otherEntityRelationshipName": "dynamicData",
+      "relationshipName": "auditInfo",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "dynamicDataEnvelope",
+      "otherEntityRelationshipName": "dynamicData",
+      "relationshipName": "dynamicDataEnvelope",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20201117032912",
+  "entityTableName": "dynamic_data",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

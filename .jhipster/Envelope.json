@@ -1,0 +1,68 @@
+{
+  "name": "Envelope",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "desc",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "dynamicDataEnvelope",
+      "otherEntityRelationshipName": "envelope",
+      "relationshipName": "dynamicDataEnvelope",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "auditInfo",
+      "otherEntityRelationshipName": "envelope",
+      "relationshipName": "auditInfo",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "fileSystem",
+      "otherEntityRelationshipName": "envelope",
+      "relationshipName": "fileSystem"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "envelope",
+      "otherEntityRelationshipName": "owner",
+      "relationshipName": "envelope"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "discrim",
+      "otherEntityRelationshipName": "envelope",
+      "relationshipName": "discrim",
+      "otherEntityField": "id"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "envelope",
+      "otherEntityRelationshipName": "envelope",
+      "relationshipName": "owner",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20201117032512",
+  "entityTableName": "envelope",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

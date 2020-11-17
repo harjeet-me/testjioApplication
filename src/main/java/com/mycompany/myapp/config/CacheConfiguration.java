@@ -49,6 +49,16 @@ public class CacheConfiguration {
             createCache(cm, com.mycompany.myapp.domain.User.class.getName() + ".authorities");
             createCache(cm, com.mycompany.myapp.domain.PersistentToken.class.getName());
             createCache(cm, com.mycompany.myapp.domain.User.class.getName() + ".persistentTokens");
+            createCache(cm, com.mycompany.myapp.domain.Envelope.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.Envelope.class.getName() + ".fileSystems");
+            createCache(cm, com.mycompany.myapp.domain.Envelope.class.getName() + ".envelopes");
+            createCache(cm, com.mycompany.myapp.domain.FileSystem.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.Conversation.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.DynamicDataEnvelope.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.DynamicDataEnvelope.class.getName() + ".dynamicData");
+            createCache(cm, com.mycompany.myapp.domain.DynamicData.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.AuditInfo.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.Discrim.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

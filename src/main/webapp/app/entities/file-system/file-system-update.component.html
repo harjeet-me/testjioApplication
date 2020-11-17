@@ -1,0 +1,95 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-file-system-heading" jhiTranslate="testjioApplicationApp.fileSystem.home.createOrEditLabel">Create or edit a File System</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="testjioApplicationApp.fileSystem.name" for="field_name">Name</label>
+                    <input type="text" class="form-control" name="name" id="field_name"
+                           formControlName="name"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="testjioApplicationApp.fileSystem.data" for="field_data">Data</label>
+                    <div>
+                        <div *ngIf="editForm.get('data')!.value" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(editForm.get('dataContentType')!.value, editForm.get('data')!.value)" jhiTranslate="entity.action.open">open</a><br>
+                            <span class="pull-left">{{ editForm.get('dataContentType')!.value }}, {{ byteSize(editForm.get('data')!.value) }}</span>
+                            <button type="button" (click)="editForm.patchValue({data: null});editForm.patchValue({dataContentType: null});"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon icon="times"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_data" (change)="setFileData($event, 'data', false)" jhiTranslate="entity.action.addblob"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="data" id="field_data"
+                           formControlName="data"/>
+                    <input type="hidden" class="form-control" name="dataContentType" id="field_dataContentType"
+                           formControlName="dataContentType" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="testjioApplicationApp.fileSystem.ext" for="field_ext">Ext</label>
+                    <input type="checkbox" class="form-control" name="ext" id="field_ext"
+                           formControlName="ext"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="testjioApplicationApp.fileSystem.url" for="field_url">Url</label>
+                    <input type="text" class="form-control" name="url" id="field_url"
+                           formControlName="url"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="testjioApplicationApp.fileSystem.dynamicDataEnvelope" for="field_dynamicDataEnvelope">Dynamic Data Envelope</label>
+                    <select class="form-control" id="field_dynamicDataEnvelope" name="dynamicDataEnvelope" formControlName="dynamicDataEnvelope">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="dynamicDataEnvelopeOption.id === editForm.get('dynamicDataEnvelope')!.value?.id ? editForm.get('dynamicDataEnvelope')!.value : dynamicDataEnvelopeOption" *ngFor="let dynamicDataEnvelopeOption of dynamicdataenvelopes; trackBy: trackById">{{ dynamicDataEnvelopeOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="testjioApplicationApp.fileSystem.auditInfo" for="field_auditInfo">Audit Info</label>
+                    <select class="form-control" id="field_auditInfo" name="auditInfo" formControlName="auditInfo">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="auditInfoOption.id === editForm.get('auditInfo')!.value?.id ? editForm.get('auditInfo')!.value : auditInfoOption" *ngFor="let auditInfoOption of auditinfos; trackBy: trackById">{{ auditInfoOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="testjioApplicationApp.fileSystem.discrim" for="field_discrim">Discrim</label>
+                    <select class="form-control" id="field_discrim" name="discrim" formControlName="discrim">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="discrimOption.id === editForm.get('discrim')!.value?.id ? editForm.get('discrim')!.value : discrimOption" *ngFor="let discrimOption of discrims; trackBy: trackById">{{ discrimOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="testjioApplicationApp.fileSystem.envelope" for="field_envelope">Envelope</label>
+                    <select class="form-control" id="field_envelope" name="envelope" formControlName="envelope">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="envelopeOption.id === editForm.get('envelope')!.value?.id ? editForm.get('envelope')!.value : envelopeOption" *ngFor="let envelopeOption of envelopes; trackBy: trackById">{{ envelopeOption.id }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

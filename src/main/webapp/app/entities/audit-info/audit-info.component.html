@@ -1,0 +1,67 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="testjioApplicationApp.auditInfo.home.title">Audit Infos</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-audit-info" [routerLink]="['/audit-info/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="testjioApplicationApp.auditInfo.home.createLabel">
+            Create a new Audit Info
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="auditInfos?.length === 0">
+        <span jhiTranslate="testjioApplicationApp.auditInfo.home.notFound">No auditInfos found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="auditInfos && auditInfos.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+                    <th scope="col" ><span jhiTranslate="testjioApplicationApp.auditInfo.createdDate">Created Date</span></th>
+                    <th scope="col" ><span jhiTranslate="testjioApplicationApp.auditInfo.createdBy">Created By</span></th>
+                    <th scope="col" ><span jhiTranslate="testjioApplicationApp.auditInfo.lastModifiedDate">Last Modified Date</span></th>
+                    <th scope="col" ><span jhiTranslate="testjioApplicationApp.auditInfo.lastModifiedBy">Last Modified By</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let auditInfo of auditInfos ;trackBy: trackId">
+                    <td><a [routerLink]="['/audit-info', auditInfo.id, 'view']">{{ auditInfo.id }}</a></td>
+                    <td>{{ auditInfo.createdDate | date:'medium' }}</td>
+                    <td>{{ auditInfo.createdBy }}</td>
+                    <td>{{ auditInfo.lastModifiedDate | date:'medium' }}</td>
+                    <td>{{ auditInfo.lastModifiedBy }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/audit-info', auditInfo.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/audit-info', auditInfo.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(auditInfo)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

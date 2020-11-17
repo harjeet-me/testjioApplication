@@ -1,0 +1,69 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="fileSystem">
+            <h2><span jhiTranslate="testjioApplicationApp.fileSystem.detail.title">File System</span> {{ fileSystem.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="testjioApplicationApp.fileSystem.name">Name</span></dt>
+                <dd>
+                    <span>{{ fileSystem.name }}</span>
+                </dd>
+                <dt><span jhiTranslate="testjioApplicationApp.fileSystem.data">Data</span></dt>
+                <dd>
+                    <div *ngIf="fileSystem.data">
+                        <a (click)="openFile(fileSystem.dataContentType, fileSystem.data)" jhiTranslate="entity.action.open">open</a>
+                        {{ fileSystem.dataContentType }}, {{ byteSize(fileSystem.data) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="testjioApplicationApp.fileSystem.ext">Ext</span></dt>
+                <dd>
+                    <span>{{ fileSystem.ext }}</span>
+                </dd>
+                <dt><span jhiTranslate="testjioApplicationApp.fileSystem.url">Url</span></dt>
+                <dd>
+                    <span>{{ fileSystem.url }}</span>
+                </dd>
+                <dt><span jhiTranslate="testjioApplicationApp.fileSystem.dynamicDataEnvelope">Dynamic Data Envelope</span></dt>
+                <dd>
+                    <div *ngIf="fileSystem.dynamicDataEnvelope">
+                        <a [routerLink]="['/dynamic-data-envelope', fileSystem.dynamicDataEnvelope?.id, 'view']">{{ fileSystem.dynamicDataEnvelope?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="testjioApplicationApp.fileSystem.auditInfo">Audit Info</span></dt>
+                <dd>
+                    <div *ngIf="fileSystem.auditInfo">
+                        <a [routerLink]="['/audit-info', fileSystem.auditInfo?.id, 'view']">{{ fileSystem.auditInfo?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="testjioApplicationApp.fileSystem.discrim">Discrim</span></dt>
+                <dd>
+                    <div *ngIf="fileSystem.discrim">
+                        <a [routerLink]="['/discrim', fileSystem.discrim?.id, 'view']">{{ fileSystem.discrim?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="testjioApplicationApp.fileSystem.envelope">Envelope</span></dt>
+                <dd>
+                    <div *ngIf="fileSystem.envelope">
+                        <a [routerLink]="['/envelope', fileSystem.envelope?.id, 'view']">{{ fileSystem.envelope?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/file-system', fileSystem.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

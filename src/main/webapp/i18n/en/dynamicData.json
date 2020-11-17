@@ -1,0 +1,26 @@
+{
+  "testjioApplicationApp": {
+    "dynamicData": {
+      "home": {
+        "title": "Dynamic Data",
+        "createLabel": "Create a new Dynamic Data",
+        "createOrEditLabel": "Create or edit a Dynamic Data",
+        "notFound": "No Dynamic Data found"
+      },
+      "created": "A new Dynamic Data is created with identifier {{ param }}",
+      "updated": "A Dynamic Data is updated with identifier {{ param }}",
+      "deleted": "A Dynamic Data is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Dynamic Data {{ id }}?"
+      },
+      "detail": {
+        "title": "Dynamic Data"
+      },
+      "dataKey": "Data Key",
+      "dataValue": "Data Value",
+      "valueDataType": "Value Data Type",
+      "auditInfo": "Audit Info",
+      "dynamicDataEnvelope": "Dynamic Data Envelope"
+    }
+  }
+}

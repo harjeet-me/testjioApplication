@@ -1,0 +1,50 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="dynamicData">
+            <h2><span jhiTranslate="testjioApplicationApp.dynamicData.detail.title">Dynamic Data</span> {{ dynamicData.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="testjioApplicationApp.dynamicData.dataKey">Data Key</span></dt>
+                <dd>
+                    <span>{{ dynamicData.dataKey }}</span>
+                </dd>
+                <dt><span jhiTranslate="testjioApplicationApp.dynamicData.dataValue">Data Value</span></dt>
+                <dd>
+                    <span>{{ dynamicData.dataValue }}</span>
+                </dd>
+                <dt><span jhiTranslate="testjioApplicationApp.dynamicData.valueDataType">Value Data Type</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'testjioApplicationApp.DataType.' + dynamicData.valueDataType }}">{{ dynamicData.valueDataType }}</span>
+                </dd>
+                <dt><span jhiTranslate="testjioApplicationApp.dynamicData.auditInfo">Audit Info</span></dt>
+                <dd>
+                    <div *ngIf="dynamicData.auditInfo">
+                        <a [routerLink]="['/audit-info', dynamicData.auditInfo?.id, 'view']">{{ dynamicData.auditInfo?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="testjioApplicationApp.dynamicData.dynamicDataEnvelope">Dynamic Data Envelope</span></dt>
+                <dd>
+                    <div *ngIf="dynamicData.dynamicDataEnvelope">
+                        <a [routerLink]="['/dynamic-data-envelope', dynamicData.dynamicDataEnvelope?.id, 'view']">{{ dynamicData.dynamicDataEnvelope?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/dynamic-data', dynamicData.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+{
+  "testjioApplicationApp": {
+    "auditInfo": {
+      "home": {
+        "title": "Audit Infos",
+        "createLabel": "Create a new Audit Info",
+        "createOrEditLabel": "Create or edit a Audit Info",
+        "notFound": "No Audit Infos found"
+      },
+      "created": "A new Audit Info is created with identifier {{ param }}",
+      "updated": "A Audit Info is updated with identifier {{ param }}",
+      "deleted": "A Audit Info is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Audit Info {{ id }}?"
+      },
+      "detail": {
+        "title": "Audit Info"
+      },
+      "createdDate": "Created Date",
+      "createdBy": "Created By",
+      "lastModifiedDate": "Last Modified Date",
+      "lastModifiedBy": "Last Modified By",
+      "fileSystem": "File System",
+      "envelope": "Envelope",
+      "conversation": "Conversation",
+      "dynamicDataEnvelope": "Dynamic Data Envelope",
+      "dynamicData": "Dynamic Data"
+    }
+  }
+}

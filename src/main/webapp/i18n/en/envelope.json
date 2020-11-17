@@ -1,0 +1,29 @@
+{
+  "testjioApplicationApp": {
+    "envelope": {
+      "home": {
+        "title": "Envelopes",
+        "createLabel": "Create a new Envelope",
+        "createOrEditLabel": "Create or edit a Envelope",
+        "notFound": "No Envelopes found"
+      },
+      "created": "A new Envelope is created with identifier {{ param }}",
+      "updated": "A Envelope is updated with identifier {{ param }}",
+      "deleted": "A Envelope is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Envelope {{ id }}?"
+      },
+      "detail": {
+        "title": "Envelope"
+      },
+      "name": "Name",
+      "desc": "Desc",
+      "dynamicDataEnvelope": "Dynamic Data Envelope",
+      "auditInfo": "Audit Info",
+      "fileSystem": "File System",
+      "envelope": "Envelope",
+      "discrim": "Discrim",
+      "owner": "Owner"
+    }
+  }
+}

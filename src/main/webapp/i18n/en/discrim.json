@@ -1,0 +1,22 @@
+{
+  "testjioApplicationApp": {
+    "discrim": {
+      "home": {
+        "title": "Discrims",
+        "createLabel": "Create a new Discrim",
+        "createOrEditLabel": "Create or edit a Discrim",
+        "notFound": "No Discrims found"
+      },
+      "created": "A new Discrim is created with identifier {{ param }}",
+      "updated": "A Discrim is updated with identifier {{ param }}",
+      "deleted": "A Discrim is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Discrim {{ id }}?"
+      },
+      "detail": {
+        "title": "Discrim"
+      },
+      "name": "Name"
+    }
+  }
+}
